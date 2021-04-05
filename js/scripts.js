@@ -3,6 +3,7 @@
 
   var listGames = [];
   var cart = [];
+  var listOfNumbers = [];
   var selectedGame;
   var $divListGames = getElement('[class=list-of-games]');
   var $divNumberGame = getElement('[class="games-list-numbers"]');
@@ -62,6 +63,27 @@
     })
   } 
 
+  function createEventForNumberButton(buttons){
+    buttons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        console.log(listOfNumbers);
+
+        if(button.getAttribute('number-option-is-selected') === 'true'){
+          button.setAttribute('number-option-is-selected', 'false');
+          button.style.background = '#ADC0C4';
+          var numberIndex = listOfNumbers.indexOf(button.innerHTML);
+          listOfNumbers.slice(toString(numberIndex), 1);
+        }
+        else {
+        button.setAttribute('number-option-is-selected', 'true');
+        button.style.background = '#27C383';
+        listOfNumbers.push(event.target.innerHTML);
+        }
+      })
+    })
+  }
+
   function resetDataButtons(){
     var $buttonSelectedGame = document.querySelectorAll('[class="game-choose-button"]');
     $buttonSelectedGame.forEach(button => {
@@ -95,13 +117,17 @@
       var newButton = document.createElement('button');
       var newButtonText = document.createTextNode(formatNumberOfButtons(i));
       newButton.appendChild(newButtonText);
-
+      
       newButton.setAttribute('class', 'number-option');
       newButton.setAttribute('number-option-is-selected', 'false');
-
+      
       $divNumberGame.appendChild(newButton);
     }
+    var $allNumberButtons = document.querySelectorAll('[class="number-option"]');
+    createEventForNumberButton($allNumberButtons);
   }
+
+
 
   getAllGames();
 })(window, document);
