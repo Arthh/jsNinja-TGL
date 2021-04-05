@@ -53,7 +53,7 @@ nav div {
   padding-right: 30px;
 }
 
-a img {
+a img, button img {
   margin-left: 5px;
   width: 21px;
   height: 19px;
@@ -82,6 +82,23 @@ section {
   margin-top: 81px;
   font-size: 24px;
 }
+
+game-description {
+  width: 648px;
+  text-align: left;
+  color: #868686;
+}
+
+.game-fill-info {
+  font: italic normal bold 17px/24px Helvetica;
+  letter-spacing: 0px;
+}
+
+.game-description {
+  font: italic normal normal 17px/24px Helvetica;
+  letter-spacing: 0px;
+}
+
 
 .chose-game-subtitle {
   margin-top: 0px;
@@ -113,10 +130,67 @@ section {
   opacity: 1;
 }
 
+button {
+  cursor: pointer;
+}
+
 button:focus{
   outline: none;
 }
 
+.games-list-numbers {
+  margin-top: 25px;
+  width: 684px;
+  height: auto;
+}
+
+.number-option {
+  width: 63px;
+  height: 65px;
+  background: #ADC0C4;
+  border-radius: 100%;
+  margin: none;
+  border: none;
+  margin-right: 12px;
+  margin-bottom: 15px;
+  color: #FFFF;
+}
+
+.games-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.game-options-complete , .game-options-clear {
+  width: 164px;
+  height: 52px;
+  border: 1px solid #27C383;
+  border-radius: 10px;
+  opacity: 1;
+  font: normal normal medium 16px/24px Helvetica;
+  letter-spacing: 0px;
+  color: #27C383;
+  background-color: #F7F7F7;
+}
+
+.game-options-clear {
+  margin-left: 20px;
+}
+
+.games-add-cart-button {
+  width: 209px;
+  height: 52px;
+  background: #27C383 0% 0% no-repeat padding-box;
+  border: 1px solid #27C383;
+  border-radius: 10px;
+  opacity: 1;
+  font: normal normal bold 16px/24px Helvetica;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
 
 /* SECTION LEFT END */
 
