@@ -177,6 +177,10 @@
   }
 
   function addGameToCart(){
+    if(cart.length === 0) {
+      $cartList.innerHTML = '';
+    }
+
     const newGame = {
       id: String(new Date().getTime()),
       gameType: selectedGame[0].type,
@@ -198,9 +202,6 @@
   }
 
   function createGameOnCart(game) {
-    if(cart.length == 0) {
-      $cartList.innerHTML = '';
-    }
 
     var gameCartDiv = document.createElement('div');
     var gameCartInfosDiv = document.createElement('div');
