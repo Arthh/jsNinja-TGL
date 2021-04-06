@@ -198,6 +198,10 @@
   }
 
   function createGameOnCart(game) {
+    if(cart.length == 0) {
+      $cartList.innerHTML = '';
+    }
+
     var gameCartDiv = document.createElement('div');
     var gameCartInfosDiv = document.createElement('div');
     var gameCartInfoTypePrice = document.createElement('div');
@@ -240,7 +244,7 @@
     gameCartDiv.appendChild(gameCartInfosDiv);
 
     addEventOfRemoveGameCart(gameCartRemoveButton);
-    $cartList.innerHTML = '';
+    
     return $cartList.appendChild(gameCartDiv);
   }
 
