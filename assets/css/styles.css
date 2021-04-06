@@ -175,6 +175,11 @@ button:focus{
   background-color: #F7F7F7;
 }
 
+.game-options-complete:hover , .game-options-clear:hover {
+  background-color: #27C383;
+  color: #F7F7F7;
+}
+
 .game-options-clear {
   margin-left: 20px;
 }
@@ -197,16 +202,17 @@ button:focus{
 
 /* ASIDE RIGHT INIT */
   aside {
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  font-style: italic; 
-  font-family: Helvetica;
-  flex-direction: column;
-  float: right;
-  margin-top: 49px;
-  margin-right: 199px;
-  border: 1px solid #E2E2E2;
-  border-radius: 10px;
-  opacity: 1;
+    width: 317px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    font-style: italic; 
+    font-family: Helvetica;
+    flex-direction: column;
+    float: right;
+    margin-top: 49px;
+    margin-right: 199px;
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+    opacity: 1;
   }
 
   .cart-container {
@@ -224,24 +230,47 @@ button:focus{
 
   .cart-info {
     width: 310px;
-    height: 388px;
+    height: 300px;
     opacity: 1;
+    overflow-y: scroll;
+  }
+
+  /* CONFIG PRO SCROLL */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #707070;
+    border-radius: 10px;
+  } 
+  /* END CONFIG PRO SCROLL */
+
+  .game-cart-info-type-price {
+    margin-top: 5px;
+    display: flex;
+  }
+
+  .game-cart-type {
+    margin-right: 14px;
   }
 
   .game-cart-div {
     display: flex;
     width: 234px;
+    margin-bottom: 20px;
   }
-
-  .game-cart-remove {
-    width: 20px;
-    height: 24px;
-    margin-right: 20px;
-    margin-top: 30px;
-  }  
 
   .game-cart-info {
     padding-left: 10px;
+  }
+
+  .cart-total-price-infos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    width: auto;
+    height: 50px;
   }
 
   .cart-save a {
@@ -258,6 +287,25 @@ button:focus{
     opacity: 1;
   }
 
+
+  .game-cart-remove-button  {
+    background: none;
+    border: none;
+    margin: none;
+  }
+
+  .game-cart-remove-button img {
+    width: 20px;
+    height: 24px;
+  }
+
+  .cart-total-price {
+    font: normal normal 300 24px/85px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #707070;
+    text-transform: uppercase;
+    margin-left: 10px;
+  }
 /* ASIDE RIGHT LEFT  */
 
 

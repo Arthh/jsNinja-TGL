@@ -71,7 +71,7 @@
       button.addEventListener('click', (event) => {
         event.preventDefault();
        if(listOfNumbers.length >= selectedGame[0]['max-number']){
-          return console.log('error')
+          return alert('Quantidade de números máxima selecionada!')
        }
 
         if(listOfNumbers.indexOf(String(button.innerHTML)) !== -1){
@@ -186,44 +186,92 @@
     }
 
     if(newGame.numbers.length < selectedGame[0]['max-number']){
-      return console.log('numeros inferiores');
+      return alert(`O jogo necessita de ${selectedGame[0]['max-number']} números`);
     }
     cart.push(newGame);
+    updateCartPriceField();
     createGameOnCart(newGame);
-    console.log(cart);
+  }
+
+  function currencyFormated(price) {
+    return price.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});  
   }
 
   function createGameOnCart(game) {
     var gameCartDiv = document.createElement('div');
     var gameCartInfosDiv = document.createElement('div');
+    var gameCartInfoTypePrice = document.createElement('div');
+
     var gameCartNumbers = document.createElement('p');
-    var gameCartType = document.createElement('p');
+    var gameCartType = document.createElement('h2');
     var gameCartPrice = document.createElement('span');
+
     var gameCartRemoveButton = document.createElement('button');
+    var gameCartRemoveImg = document.createElement('img');
+
+    gameCartRemoveImg.setAttribute('src', "assets\\icons\\trash.svg");
 
     gameCartDiv.setAttribute('class', 'game-cart-div');
     gameCartInfosDiv.setAttribute('class', 'game-cart-info');
 
+    gameCartInfoTypePrice.setAttribute('class', 'game-cart-info-type-price');
+
     gameCartNumbers.setAttribute('class', 'game-cart-numbers');
     gameCartType.setAttribute('class', 'game-cart-type');
     gameCartPrice.setAttribute('class', 'game-cart-price');
-
-    gameCartRemoveButton.setAttribute('class', 'game-cart-remove');
+    
+    gameCartRemoveButton.setAttribute('class', 'game-cart-remove-button');
     gameCartRemoveButton.setAttribute('game-id', game.id);
+    gameCartRemoveButton.appendChild(gameCartRemoveImg);
 
     gameCartNumbers.textContent = game.numbers.join(', ');
+    gameCartPrice.textContent = currencyFormated(game.price);
     gameCartType.textContent = game.gameType;
-    gameCartPrice.textContent = game.price;
+    gameCartType.style.color = game.color;
+
+    gameCartInfoTypePrice.appendChild(gameCartType);
+    gameCartInfoTypePrice.appendChild(gameCartPrice);
 
     gameCartInfosDiv.style.borderLeft = `3px ${game.color} solid`;
     gameCartInfosDiv.appendChild(gameCartNumbers);
-    gameCartInfosDiv.appendChild(gameCartType);
-    gameCartInfosDiv.appendChild(gameCartPrice);
+    gameCartInfosDiv.appendChild(gameCartInfoTypePrice);
 
     gameCartDiv.appendChild(gameCartRemoveButton);
     gameCartDiv.appendChild(gameCartInfosDiv);
 
+    addEventOfRemoveGameCart(gameCartRemoveButton);
+
     return $cartList.appendChild(gameCartDiv);
+  }
+
+  function priceOfCart(){
+    var totalPrice = 0;
+    cart.forEach(game => {
+      totalPrice += Number(game.price);
+    })
+    return totalPrice;
+  }
+
+  function updateCartPriceField() {
+    var $cartPriceField = getElement('[class="cart-total-price"]');
+    $cartPriceField.innerHTML = currencyFormated(priceOfCart());
+  }
+
+  function addEventOfRemoveGameCart(button){
+    button.addEventListener('click', () => {
+      var gameId = button.getAttribute('game-id');
+      cart = cart.filter(game => game.id !== gameId);
+
+      listAllGamesCartAgain();
+    })
+    
+  }
+
+  function listAllGamesCartAgain(){
+    $cartList.innerHTML = '';
+    cart.forEach(game => {
+      createGameOnCart(game);
+    })
   }
 
   getAllGames();
