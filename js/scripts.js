@@ -240,7 +240,7 @@
     gameCartDiv.appendChild(gameCartInfosDiv);
 
     addEventOfRemoveGameCart(gameCartRemoveButton);
-
+    $cartList.innerHTML = '';
     return $cartList.appendChild(gameCartDiv);
   }
 
